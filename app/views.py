@@ -14,7 +14,7 @@ def home(request):
     hoodie = Neighborhood.objects.all()
     arr=[]
     for post in profile:
-        arr.append(post.hood_id.id)
+        arr.append(post.hood_id.id) 
     if len(arr)>0:
         id=arr[0]
         all_posts = Post.objects.filter(hood_post=id)
@@ -26,7 +26,7 @@ def home(request):
 @login_required(login_url='/accounts/login/')
 def new_profile(request):
     current_user = request.user
-    if request.method == 'POST':
+    if request.method == 'POST': 
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             profile = form.save(commit=False)
@@ -34,7 +34,7 @@ def new_profile(request):
             profile.profile_Id = request.user.id
             profile.save()
         return redirect('profile')
-    else:
+    else:  
         form = ProfileForm()
     return render(request, 'profile/new_profile.html', {"form": form})
 
@@ -47,7 +47,7 @@ def profile_edit(request):
         if form.is_valid():
             form.save()
         return redirect('profile')
-    else:
+    else:  
         form = ProfileForm()
     return render(request,'profile/edit_profile.html',{'form':form})
 
@@ -110,7 +110,7 @@ def search_post(request):
 @login_required(login_url='/accounts/login/')
 def contact(request):
     contacts = ContactInfo.objects.all()
-    return render(request,'main/contact_info.html',{"contacts":contacts})
+    return render(request,'main/contact.html',{"contacts":contacts})
 
 @login_required(login_url='/accounts/login/')
 def new_post(request):
