@@ -95,7 +95,7 @@ def business(request):
      
     return render(request,'business/index.html',{"all_businesses":all_businesses,"profile":profile})
 
-def search_post(request):
+def search_post(request):   
     if 'post' in request.GET and request.GET ["post"]:
         search_term = request.GET.get("post")
         searched_posts = Business.search_business_by_title(search_term)
